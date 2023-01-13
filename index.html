@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id = "loginPage">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,17 +12,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <title>Login | Jason Manganyi</title>
 </head>
-
-<body>
-
     <style>
-        body {background-image: url('e2a06407aa2bb4ff009ccc8ac0821f9c.jpg');
-        background-size: cover;
-        background-repeat: repeat-y;
+        html.loginPage body.loginBody, body, html {
+            background-color: black;
+            background-image: url('e2a06407aa2bb4ff009ccc8ac0821f9c.jpg');
+            background-size: cover;
+            background-repeat: repeat-y;
 }
-        
-        
     </style>
+<body id = "loginBody"> 
+
     <article class="box-form" id="boxform">
         <article class="left">
             <article class="overlay">
@@ -44,7 +43,7 @@
         <article class="right">
             <h5>Login</h5>
             <p>Don't have access? </p> 
-            <p><a href="#" onclick="request()">Request login credentials </a> </p>
+            <p style="color:bisque;">Shoot me an email or <a href="#" onclick="request()"> click here </a> to request login credentials. <br><span style="font-size:xx-small; color: grey;">Or find the credentials in the js script if you know how, not hidden.</span></p>
             <div class="inputs">
 <!--  
                 <form name="login" method="post" id="login_form">
