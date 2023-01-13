@@ -1,5 +1,5 @@
 
-const my_dic = {"uncertainty":"USEbw9Wa19WeDJw","obligation":"F2wh3Z3uWy7mZ9h","literacy":"X0ws2LDadc8JF5b","discrimination":"0Z4nUOWFMBeS5gp","publication":"2i0fwG0mBTwxVB8","confrontation":"fiWyQjbHDgvebUf","electronics":"Rr5fbIgKYMDxgST","execution": "VtRVZPGoUpGYzER","constitutional": "4onn8BuSjDkgZYv","discovery": "B7iHUzbMKK9ydxS","dictionary": "qO90JwRtI2WNhC0","autonomy": "0EDpNxS46pOC69O","articulate": "waTtEZZyulGXkAd","examination": "ZZGkoRKcYTjd27E","calculation": "aMxe8mhGUOZF5Aq","activity":"pqIR9wnPh6lNhgP","radiation":"O1qMd0JCL2X6GR2","expectation":"551yaxb0wZYKI9y","nationalism":"5hvMZFk0Lrb5UvQ","society":"921RopYzPavNQ4U","stereotype":"Y7jj5aHp5E9BzoK","superintendent":"hjETU3qF35QQyiX","diplomatic": "7PjOS3d8ftR2YQy","continuous":"N9l5WEW75XDPt9L","exaggerate":"NhJ8YyChefFEBZG","cemetery":"UnXOs7jGkuNMNgE","constellation":"MdAB9tMSN7XBUr4","original": "chXHW28R9ZdCi1t","application":"XtkqrZY2Q4ldcc8","qualification":"JPEs8gEOQbw1tnU"}
+const my_dic = {"uncertainty":"USEbw9Wa19WeDJw","obligation":"F2wh3Z3uWy7mZ9h","literacy":"X0ws2LDadc8JF5b","discrimination":"0Z4nUOWFMBeS5gp","publication":"2i0fwG0mBTwxVB8","confrontation":"fiWyQjbHDgvebUf","electronics":"Rr5fbIgKYMDxgST","execution":"VtRVZPGoUpGYzER","constitutional":"4onn8BuSjDkgZYv","discovery":"B7iHUzbMKK9ydxS","dictionary":"qO90JwRtI2WNhC0","autonomy":"0EDpNxS46pOC69O","articulate":"waTtEZZyulGXkAd","examination":"ZZGkoRKcYTjd27E","calculation":"aMxe8mhGUOZF5Aq","activity":"pqIR9wnPh6lNhgP","radiation":"O1qMd0JCL2X6GR2","expectation":"551yaxb0wZYKI9y","nationalism":"5hvMZFk0Lrb5UvQ","society":"921RopYzPavNQ4U","stereotype":"Y7jj5aHp5E9BzoK","superintendent":"hjETU3qF35QQyiX","diplomatic":"7PjOS3d8ftR2YQy","continuous":"N9l5WEW75XDPt9L","exaggerate":"NhJ8YyChefFEBZG","cemetery":"UnXOs7jGkuNMNgE","constellation":"MdAB9tMSN7XBUr4","original": "chXHW28R9ZdCi1t","application":"XtkqrZY2Q4ldcc8","qualification":"JPEs8gEOQbw1tnU"}
 
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
@@ -9,7 +9,7 @@ var password = document.getElementById("password").value;
 
 
 if ( password == my_dic[username]){
-alert ("Login successfully");
+alert ("Login successful!");
 window.location = "Home.html"; // Redirecting to other page.
 return false;
 }
