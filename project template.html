@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Manganyi | Project - </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css"/>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="prism (1).css">
+    <link rel="stylesheet" href="project.css">
+
+    <style>
+
+        .hello {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    
+    </header>
+    <script src="prism.js"> </script>
+    <script src="/components/prism-python.js"></script>
+    <script src="/components/prism-python.min.js"></script>
+    <script src="project.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js"></script> -->
+    <script>
+        $(document).ready(function(){
+          $("button").click(function(){
+            $("pre").toggle(750);
+            changeText();
+          });
+        });
+
+        function changeText(){
+            var x = document.getElementById("showcode");
+            if (x.innerHTML === "Show Code") {
+              x.innerHTML = "Hide Code!";
+            } else {
+              x.innerHTML = "Show Code";
+            }
+          }
+
+        </script>
+    <main id="projectMain">
+        <article class="definition" id="mainHeader">
+            <span class="subdefinition" ><article >Objective</article></span>
+            <span class="subdefinition"><article>Key Insights</article></span>
+            <span class="subdefinition"><article>Results</article></span>
+            <span class="subdefinition"><article>Tools</article></span>
+
+        </article>
+        <!--
+            structure is modelled after claudia's portfolio
+            see: https://www.claudiatenhoope.com/data-analysis/
+            
+            I'm going to try to implement the show code functionality for python or R projects. 
+            see: https://harrisonjansma.com/apple
+
+        -->  
+        
+
+
+        <article class="analysis">
+
+            <button id="showcode" type="button">Hide code</button>
+        
+        
+            <!--Insert code and descriptions on the code below-->
+            <h3 class="subheading"> Heading 3</h3>
+            <p> subheading or description</p>
+            <pre class="showCode">
+                <code class="language-py">
+                    import code as code
+                    import pandas as pd
+                </code>
+            </pre>
+    
+            <h3 class="subheading">Heading 3</h3>
+            <p>Subheading or description</p>
+            <pre class="showCode">
+                <code class="language-py">
+                    data = pd.read_csv('news.csv')
+                    ProfileReport(data)   
+                    data.head(20)
+                </code>
+            </pre>
+    
+        </article>
+
+
+    </main>
+
+
+
+    <footer></footer>
+</body>
+</html>

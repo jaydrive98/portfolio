@@ -1,0 +1,683 @@
+body ::selection{
+  background-color: #000000;
+  color: red;
+}
+body ::-moz-selection{
+  background-color: #000000;
+  color: red;
+}
+
+.subdefinition{
+  background-color: #b6b4b4;
+  height: 100px;
+    width: 100px;
+   padding: 10%;
+    height: 80px;
+    border: 1cpx rgb(255, 0, 0) solid;
+    display: inline;
+}
+
+ button.showcode,  button.viewcode {
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 35px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    background-image: linear-gradient(135deg, #bf0000 10%, #ff0000 100%);
+    cursor:pointer;
+  }
+
+ button.showcode:hover,  button.viewcode:hover{
+  box-shadow: 0px 4px 20px 0px #ff0000a6;
+  
+}
+
+button#showcode {
+  float: right;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 35px;
+  border-radius: 50px;
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  background-image: linear-gradient(135deg, #bf0000 10%, #ff0000 100%);
+  cursor:pointer;
+}
+
+button#showcode:hover {
+box-shadow: 0px 4px 20px 0px #ff0000a6;
+
+}
+
+
+
+
+
+#TopScroll {
+  display:none; 
+  position: fixed; 
+  bottom: 30px; 
+  right: 30px; 
+  z-index: 99;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 35px;
+    border-radius: 50px;
+    border: 0;
+    outline: 0;
+    background-image: linear-gradient(135deg, #bf0000 10%, #ff0000 100%);
+    cursor:pointer;
+}
+#TopScroll:hover {
+  box-shadow: 0px 4px 20px 0px #3c3c3ca6;
+  background-image: linear-gradient(135deg, #000000 10%, #2e2e2e 100%);
+  color: white;
+}
+
+/*  Design to flip the cards near the top of project page */
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.definition, .chooseProject, .selectProject {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content:space-around;
+}
+
+
+
+#janeCompare {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content:space-around;
+}
+#janeCompare div  #removeThis {
+  height: max-content;
+}
+
+#janeCompare img {
+  object-fit: contain;
+}
+
+#netflixCards .flip-card {
+  font-family: Oswald;
+  background-color: transparent;
+  width: 440px;
+  height: 330px;
+  border: 1px solid transparent;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+ 
+}
+
+.flip-card {
+  font-family: Oswald;
+  background-color: transparent;
+  width: 330px;
+  height: 330px;
+  border: 1px solid transparent;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+ 
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  
+}
+
+.flip-card-front {
+  font-size: 50px ;
+  font-family: Oswald;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flip-card-front span {
+  margin: auto;
+  padding-bottom: 1%;
+  border-bottom: #ff0000 8px solid;
+}
+
+
+
+
+.flip-card-back span{
+  margin: auto 0;
+  text-align: left;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+
+}
+
+/* Style the front side  */
+.flip-card-front {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 0.1px rgb(125, 125, 125) solid;
+  text-align: center;
+}
+
+/* Style the back side */
+.flip-card-back {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(0, 0, 0);
+  color: white;
+  transform: rotateY(180deg);
+  padding-left: 5%;
+}
+
+.flip-card-back-header {
+  text-decoration: underline red 5px;
+}
+
+
+.analysis p, .analysis li {
+  line-height: 2;
+  text-align: justify;
+  margin-right: 2%;
+}
+.analysis p {
+  margin-left: 1%;
+}
+.flip-card h2 {
+  text-align: center;
+  padding-top: 3%;
+}
+table {
+  width: 40%;
+  padding-left: 100%;
+  margin-left: 3%;
+  margin-top: 2%;
+}
+.analysis td, .analysis th {
+  text-align: center;
+}
+.analysis .th {
+  text-align: left;
+}
+.analysis th {
+  padding-bottom: 5%;
+}
+figcaption p, figcaption {
+  font-size:small;
+  line-height:normal;
+  color: #939495;
+  
+  font-style: italic;
+}
+
+ul {list-style-type: circle}
+#descriptiveStats {
+  align-self: center;
+  width: 95%;
+  
+}
+#descriptiveStats td,#descriptiveStats th, #descriptiveStats table {
+  border: 1px rgb(66,66,66) solid;
+}
+
+#descriptiveStats td:hover, #descriptiveStats th:hover,#resultTable tr:hover { 
+  background-color: #666262;
+  color:white;
+}
+
+#descriptiveStats td {
+  text-align: center;
+  margin: 10%;
+  padding: 1% 0%;
+  font-size: small;
+}
+#descriptiveStats tr:nth-child(even){
+  background-color: rgb(66, 66, 66);
+  color: #fff;
+}
+
+#descriptiveStats caption,#resultTable caption{
+  padding-bottom: 2%;
+  text-align:center;
+  color:black;
+  caption-side: top;
+}
+#descriptiveStats th {
+  vertical-align: middle;
+  padding: 2% 0%;
+  margin: 1%;
+  font-size: medium;
+}
+.rEval td, .rEval tr, .rEval th  {
+  border: transparent;
+}
+.warnings {color:red}
+
+.carousel-control-prev span,.carousel-control-next span{
+  background-color: black;
+  color: #ff0000;
+  
+}
+#demo img, #second img {width:80%; padding-left: 15%;}
+
+.chooseProject{
+  padding-left: inherit;
+ 
+}
+.project, .projectOuter {
+  width: auto;
+  height:auto;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content:space-around;
+ 
+}
+.projectOuter:hover, .foodOuter:hover {
+  border: 3px #000000 solid;
+  cursor: pointer;
+
+}
+
+.project img {
+  width: 90%;
+  height: 100%;
+ 
+}
+
+.projectOuter {
+  width: 49%;
+  border: 1px white solid;
+  display: flex;
+  flex-flow: row wrap;
+  height: 150%;
+  }
+
+#Contents ul li a{
+  text-decoration:none;
+}
+ #Contents ul li a:hover{
+  text-decoration: red 5px underline solid;
+  color: white
+}
+
+#Contents{
+  background-color: black; 
+  color:white; 
+  padding: 5%
+}
+
+.projectInner {
+  padding: 6% 3%;
+  height: auto;
+}
+.projectContainerInner p {
+  text-align: justify;
+}
+
+main h1, main h2, main h3, main h4, main h5, main h6{
+  font-family: Oswald;
+  padding: 3% auto;
+  margin: 2% auto;
+
+}
+.projectDescription {
+  padding: 3% 5%;
+  font-weight: 10;
+  text-align: justify;
+  
+}
+.projectLibraries {
+  color: red;
+  text-align: justify;
+}
+
+
+[data-container-status = "inactive"]{
+  display: none;
+}
+[data-container-status = "active"]{
+  display:block;
+}
+
+.carousel-item.active h4 {
+  color:rgb(0, 0, 0);
+  text-align: center;
+  padding-bottom: 0%;
+  margin-bottom: -8%;
+  border-bottom: 5px underline red ;
+
+}
+
+#myProjectOl li, .myProjectOl li{color:rgb(164,164,164); padding: 3% 0%}
+
+.selectProject img {
+  width: 100%;
+}
+
+.foodOuter {
+  width:fit-content;
+  flex-wrap: nowrap;
+  justify-content:space-around;
+  
+}
+
+.foodInner {
+  padding: 6% 3%;
+  height:200px;
+  
+}
+
+.foodOuter h3 {text-align: center;}
+.foodOuter p {text-align: justify;}
+
+pre samp {
+  color:red;
+}
+
+ul.jYxBte.Fpy8Db li a:hover {
+  color: red;
+}
+
+.chartGallery {
+  display: flex;
+  justify-content: space-around;
+  
+}
+.chartGallery img {
+  perspective: 1000px;
+  backface-visibility: hidden; 
+  transition: opacity .3s ease 0s, transform .3s ease 0s;
+  transform: scale(1) rotate(0.001deg); 
+  box-shadow: 2px 2px 5px #8a8b8b ;
+}
+
+article#pca .chartGallery img, article#findingk .chartGallery img, #scrapeAlot img {
+  width: 30%;
+}
+
+article#dendo .chartGallery img {
+  width: 23%;
+  
+}
+
+.chartGallery img:hover {
+  z-index: 10; 
+  transform: scale(2) rotate(0.001deg);
+  box-shadow: 2px 2px 5px rgb(249, 198, 198) ;
+}
+
+
+#wineGallery img {
+  box-shadow: 2px 2px 5px #8a8b8b ;
+  perspective: 1000px;
+  backface-visibility: hidden; 
+  transition: opacity .3s ease 0s, transform .3s ease 0s;
+  transform: scale(1) rotate(0.001deg); 
+}
+
+#wineGallery .sep img:hover {
+  box-shadow: 2px 2px 5px rgb(255, 0, 0) ;
+}
+#wineGallery .db img:hover {
+  z-index: 10; 
+  transform: scale(1.25) rotate(0.001deg);
+  box-shadow: 2px 2px 5px rgb(182, 182, 182) ;
+}
+#wineGallery .more img:hover {
+  z-index: 10; 
+  transform: scale(1.8) rotate(0.001deg);
+  box-shadow: 2px 2px 5px rgb(0, 0, 0) ;
+}
+
+.wineGallery {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.wineGallery.db img{
+  width: 47.5%;
+}
+.wineGallery.sep img{
+  width: 100%;
+}
+.wineGallery.more img{
+  width: 33%;
+  aspect-ratio: 4/3;
+}
+
+
+.analysis a, #projectMain a{
+  color:inherit;
+  
+}
+.analysis a:hover,  #projectMain a:hover {
+  color:red;
+  cursor: pointer;
+}
+
+#projectMain ul, .analysis ul {
+  list-style-type: circle;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+.analysis p, #projectMain p {
+  font-family: "Open Sans", sans-serif;
+  padding: 1%;
+}
+section h2.subheadings, section h1.subheadings  {
+  text-decoration: 10px solid red;
+}
+
+#recommendationProject {
+  background-image: url('background/Black-list.jpeg');
+}
+
+#recommendationProject, #databaseProject {
+  background-size: cover;
+  position: relative;
+  height: 700px;
+}
+
+#recommendationProject .middle, #databaseProject .middle {
+  background-color: rgb(143, 142, 142);
+  color: black;
+  font-weight: bold;
+  margin: 0 auto; 
+  padding: 10px;
+  font-size:x-large;
+  text-align: center;
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  mix-blend-mode: screen; 
+  width: 50%;
+}
+
+
+
+#recommendationProject .top, #databaseProject .top {
+  background-color: rgb(255, 0, 0);
+  font-weight: bold;
+  margin: 0 auto; 
+  padding: 10px;
+  font-size: medium;
+  text-align: left;
+  position: absolute;
+  top: 2%; 
+  mix-blend-mode:lighten;
+}
+
+#recommendationProject .middle, #databaseProject .middle {
+  background-color: rgb(163, 163, 163);
+  color: black;
+  font-weight: bold;
+  margin: 0 auto; 
+  padding: 10px;
+  font-size:larger;
+  text-align: center;
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  mix-blend-mode: screen; 
+}
+
+#recommendationProject .bottom, #databaseProject .bottom {
+  color: rgb(255, 255, 255);
+  font-weight: bold; 
+  font-size:5px;
+  text-align:center;
+  bottom: 3%;
+  position: absolute;
+  mix-blend-mode:normal;
+
+}
+#cleaning li{
+  padding: 1% 5%;
+  list-style:square;
+}
+
+li {
+  list-style: square;
+}
+
+
+.wp-block-code {
+	border: 0;
+	padding: 0;
+}
+
+#MySQLTopScroll {
+  display:none; 
+  position: fixed; 
+  bottom: 30px; 
+  right: 70px; 
+  z-index: 99;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 35px;
+    border-radius: 50px;
+    border: 0;
+    outline: 0;
+    background-image: linear-gradient(135deg, #bf0000 10%, #ff0000 100%);
+    cursor:pointer;
+}
+#MySQLTopScroll:hover {
+  box-shadow: 0px 4px 20px 0px #3c3c3ca6;
+  background-image: linear-gradient(135deg, #000000 10%, #2e2e2e 100%);
+  color: white;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+  
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(rgb(163, 0, 0), rgb(255, 0, 0)); 
+}
+
+.wp-block-code > div {
+	overflow: auto;
+}
+
+.shcb-language {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal;
+	word-break: normal;
+}
+
+.hljs {
+	box-sizing: border-box;
+}
+
+.hljs.shcb-code-table {
+	display: table;
+	width: 75%;
+}
+
+.hljs.shcb-code-table > .shcb-loc {
+	color: inherit;
+	display: table-row;
+	width: 75%;
+}
+
+.hljs.shcb-code-table .shcb-loc > span {
+	display: table-cell;
+}
+
+pre {
+  padding-right: 40%;
+}
+
+.wp-block-code code.hljs:not(.shcb-wrap-lines) {
+	white-space: pre;
+}
+
+.wp-block-code code.hljs.shcb-wrap-lines {
+	white-space: pre-wrap;
+}
+
+.hljs.shcb-line-numbers {
+	border-spacing: 0;
+	counter-reset: line;
+}
+
+.hljs.shcb-line-numbers > .shcb-loc {
+	counter-increment: line;
+}
+
+.hljs.shcb-line-numbers .shcb-loc > span {
+	padding-left: 0.75em;
+}
+
+.hljs.shcb-line-numbers .shcb-loc::before {
+	border-right: 1px solid #ddd;
+	content: counter(line);
+	display: table-cell;
+	padding: 0 0.75em;
+	text-align: right;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	white-space: nowrap;
+	width: 1%;
+}

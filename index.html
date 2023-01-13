@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script src="js/login.js"></script>
+    <script src= "https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Login | Jason Manganyi</title>
+</head>
+
+<body>
+    <article class="box-form" id="boxform">
+        <article class="left">
+            <article class="overlay">
+                <h1 id="welcome">WELCOME TO MY PORTFOLIO</h1>
+               
+                <h3><p id="question"> </p></h3>
+
+                <script> 
+                    $('#boxform').click(function() {
+                    //$("h1").fadeOut(1500);
+                    $('#question').addClass('animation-start');
+                    setTimeout(function() {
+                      $("#question").fadeIn(1500);
+                    }, 20000);
+                  });
+                </script>
+
+                <span>
+                    <p class="pain"> </p>
+                    <a class="fb"><i class="fa fa-facebook facebookThing" aria-hidden="true"></i> Login with facebook</a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
+                </span>
+            </article>
+
+        </article>
+
+        <article class="right">
+            <h5>Login</h5>
+            <p>Don't have access? </p> 
+            <p><a href="#" onclick="request()">Request login credentials </a> </p>
+            <div class="inputs">
+<!--  
+                <form name="login" method="post" id="login_form">
+                    <input type="text" placeholder="username" id="username" required>
+                    <br>
+                    <input type="password" placeholder="password" id="password" required>
+                
+                    <br><br>
+                    <input type="button" value="Login!" id="submit" onsubmit="return validate()"/>
+                </form> 
+                
+              
+            <div class="remember-me--forget-password">      
+                <label>
+                    <input type="checkbox" name="item" checked/>
+                    <span class="text-checkbox">Remember me</span>
+                </label>
+                <p>Don't have access?</p>
+            </div>
+            <br>
+            <button type="submit" onclick="return validate()">Login</button>-->
+
+            <form id="login_form" method="post" name="login">
+            
+                <input type="text" name="username" id="username" placeholder="username" required/>
+           
+                <input type="password" name="password" id="password" placeholder="password" required/>
+                <br><br><br> <br>
+                <input type="button" value="Login" id="submit" onclick="validate()"/>
+                </form>
+            </div>    
+            
+        </article>
+    </article>
+    
+</body>
+</html>
