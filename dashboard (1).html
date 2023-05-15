@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>explainerdashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+<div></div>
+<div>
+    <div>
+    
+<div class="row" style="margin-top: 20px;">
+    
+<div class="col">
+
+<div class="row row-cols-1 g-4" style="margin-top: 20px;">
+    
+<div class="col">
+
+<div class="card h-100" >
+  <div class="card-header"><h3 class="card-title">Feature Importances</h3></div>
+  <div class="card-body">
+    <div class="w-100">
+    
+<div class="row" style="margin-top: 20px;">
+    
+<div class="col">
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>                <div id="ce0adf7c-be1d-4460-a7bf-4bdba540abd7" class="plotly-graph-div" style="height:360px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("ce0adf7c-be1d-4460-a7bf-4bdba540abd7")) {                    Plotly.newPlot(                        "ce0adf7c-be1d-4460-a7bf-4bdba540abd7",                        [{"hoverinfo":"text","orientation":"h","text":["Category of the tarrif being used and charged","Amount paid at toll","","Extras","Tax","The payment method used by the passenger","Tip paid by passenger","Duration of the trip in miles"],"x":[0.022321976261132467,0.025970589171059717,0.09537730309230737,1.3417689580668,2.4061760445500315,17.020919901003452,25.01562789118012,332.4501336770849],"y":["8. RatecodeID","7. tolls_amount","6. improvement_surcharge","5. extra","4. mta_tax","3. payment_type","2. tip_amount","1. trip_distance"],"type":"bar"}],                        {"plot_bgcolor":"#fff","showlegend":false,"title":{"text":"Average impact on predicted duration_secs<br>(mean absolute SHAP value)"},"template":{"data":{"scatter":[{"type":"scatter"}]}},"yaxis":{"automargin":true},"xaxis":{"automargin":true,"title":{"text":"s"}},"height":360,"margin":{"b":40,"l":147,"pad":4,"r":40,"t":40}},                        {"responsive": true}                    )                };                            </script>        </div>
+</div>
+        
+</div> 
+    
+    </div>
+  </div>
+</div>
+
+</div>
+        
+</div> 
+    
+</div>
+        
+</div> 
+        </div><div>
+<div class="row" style="margin-top: 20px;">
+    
+<div class="col">
+
+<div class="row row-cols-1 g-4" style="margin-top: 20px;">
+    
+<div class="col">
+
+<div class="card h-100" >
+  <div class="card-header"><h3 class="card-title">Feature Descriptions</h3></div>
+  <div class="card-body">
+    <div class="w-100">
+    
+<div class="row" style="margin-top: 20px;">
+    
+<div class="col">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Feature</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>trip_distance</td>
+      <td>Duration of the trip in miles</td>
+    </tr>
+    <tr>
+      <td>tip_amount</td>
+      <td>Tip paid by passenger</td>
+    </tr>
+    <tr>
+      <td>payment_type</td>
+      <td>The payment method used by the passenger</td>
+    </tr>
+    <tr>
+      <td>mta_tax</td>
+      <td>Tax</td>
+    </tr>
+    <tr>
+      <td>extra</td>
+      <td>Extras</td>
+    </tr>
+    <tr>
+      <td>improvement_surcharge</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>tolls_amount</td>
+      <td>Amount paid at toll</td>
+    </tr>
+    <tr>
+      <td>RatecodeID</td>
+      <td>Category of the tarrif being used and charged</td>
+    </tr>
+
+  </tbody>
+</table>
+    
+</div>
+        
+</div> 
+    
+    </div>
+  </div>
+</div>
+
+</div>
+        
+</div> 
+    
+</div>
+        
+</div> 
+    
+    </div>
+</div>
+    
+</div>
+
+</body>
+
+<script type="text/javascript">
+window.dispatchEvent(new Event('resize'));
+</script>
+        
+</html>
+    
