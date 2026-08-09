@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FN0PNQSCTB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FN0PNQSCTB');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventsAir → BigQuery → HubSpot Pipeline | Jason Manganyi</title>
+  <meta name="description" content="A production, webhook-driven data pipeline on Google Cloud that moves live event-registration data into BigQuery and syncs it to HubSpot CRM in real time.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">JASON <span>MANGANYI</span></a>
+      <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Projects</a>
+        <a href="about.html">About</a>
+        <a href="about.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom:34px">
+    <div class="wrap">
+      <a class="back-link" href="work.html">&#8592; All projects</a>
+      <div class="eyebrow">Data Engineering &middot; Google Cloud</div>
+      <h1 style="font-size:clamp(2rem,5vw,3.4rem)">EventsAir&nbsp;&rarr; BigQuery&nbsp;&rarr; HubSpot<br>Real-Time Pipeline</h1>
+      <div class="rule"></div>
+      <p class="lede">
+        A production, event-driven pipeline on Google Cloud that takes live registration
+        data from our events platform, lands it in a BigQuery warehouse, and keeps the CRM
+        in sync — automatically, within seconds, and without anyone touching a spreadsheet.
+      </p>
+      <div class="tag-row">
+        <span>Python</span><span>Google Cloud</span><span>Cloud Run</span><span>Cloud Tasks</span>
+        <span>Pub/Sub pattern</span><span>BigQuery</span><span>GraphQL</span><span>HubSpot API</span><span>ClickUp API</span>
+      </div>
+      <a class="repo-link" href="https://github.com/Jason-Vuka/eventsair-gcp-hubspot-production-v2" target="_blank" rel="noopener">
+        &#128279; View the code on GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- The problem -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">The problem</div>
+        <h2>Registration data that lived everywhere and nowhere</h2>
+      </div>
+      <div class="prose" style="max-width:820px">
+        <p>
+          Every summit, conference and expo generates a flood of registrations in
+          <strong>EventsAir</strong>, our events platform. That data is where the money is —
+          who's coming, what they paid, which sessions and functions they signed up for,
+          which exhibitors booked stands. But it was trapped inside the platform. Getting it
+          to the sales, marketing and leadership teams meant manual exports, copy-paste, and
+          spreadsheets full of personal data floating around inboxes.
+        </p>
+        <p>
+          The brief was simple to say and hard to do: make that data <strong>reliable, live,
+          and in the tools people already use</strong> — a proper BigQuery warehouse for
+          analytics and dashboards, and the HubSpot CRM for sales and marketing — with no
+          manual step in the middle, and full POPIA/GDPR discipline over the personal data
+          moving through it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">How it works</div>
+        <h2>The pipeline, end to end</h2>
+      </div>
+      <div class="flow">
+        <div class="flow-stage">
+          <div class="flow-node"><span class="t">EventsAir</span><span class="s">Webhook fires on any change</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node accent"><span class="t">Receiver</span><span class="s">Verifies signature, audits, queues</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node accent"><span class="t">Processor</span><span class="s">Fetches, cleans &amp; transforms</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node"><span class="t">BigQuery</span><span class="s">Warehouse: live + history</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node"><span class="t">HubSpot</span><span class="s">CRM synced in real time</span></div>
+        </div>
+      </div>
+      <div class="prose" style="max-width:820px; margin-top:26px">
+        <p>
+          The moment anything changes in EventsAir, a <strong>webhook</strong> fires. A public
+          <strong>receiver service</strong> checks the message is genuinely from EventsAir
+          (HMAC signature), writes a raw audit record, and drops a job onto a queue. A private
+          <strong>processor service</strong> picks the job up, pulls the full, up-to-date
+          contact from the EventsAir GraphQL API, transforms it, and writes it to BigQuery —
+          both a current-state table and an append-only history. On success it hands off to the
+          <strong>HubSpot sync</strong>, and a separate branch pushes speakers into
+          <strong>ClickUp</strong> to trigger downstream work.
+        </p>
+        <p>
+          Each stage is its own service with its own retries and timeout, connected by queues
+          rather than direct calls. That decoupling is the whole point: a HubSpot rate-limit
+          can't take down the BigQuery write, and any single step can fail and retry on its own
+          without losing the event.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact / metrics -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Impact</div>
+        <h2>What it changed</h2>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="big">Real&#8209;time</div><div class="lbl">Registration data reaches BigQuery &amp; the CRM within seconds of a change</div></div>
+        <div class="metric"><div class="big">5 services</div><div class="lbl">Independently deployed, independently scaled, independently retried</div></div>
+        <div class="metric"><div class="big">0 exports</div><div class="lbl">A previously manual, spreadsheet-driven process, fully automated</div></div>
+        <div class="metric"><div class="big">All events</div><div class="lbl">One consistent pipeline across every summit, conference and expo</div></div>
+      </div>
+      <div class="prose" style="max-width:820px; margin-top:26px">
+        <p>
+          Leadership, operations, marketing and sales now work from the same live data. The
+          spreadsheets full of personal information disappeared, replaced by a governed warehouse
+          feeding self-serve Looker Studio dashboards — and a CRM that's always current.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering highlights -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Engineering highlights</div>
+        <h2>The interesting bits</h2>
+      </div>
+      <div class="highlight-grid">
+        <div class="highlight">
+          <h4>Decoupled by design</h4>
+          <p>Receiver, processor, HubSpot sync, speaker automation and the CDC sweeper are separate Cloud Run services joined by Cloud Tasks queues — each with its own retries, so a slow downstream never blocks an upstream write.</p>
+        </div>
+        <div class="highlight">
+          <h4>Idempotent writes</h4>
+          <p>BigQuery writes use a staging-table <code>MERGE</code> keyed on natural IDs, and history tables dedupe on a content hash — so a webhook delivered twice never creates duplicate or conflicting rows.</p>
+        </div>
+        <div class="highlight">
+          <h4>Self-healing event discovery</h4>
+          <p>A registration for an unknown event doesn't crash the pipeline — it triggers automatic discovery that infers the brand and portfolio, provisions the event in both BigQuery and HubSpot, and carries on.</p>
+        </div>
+        <div class="highlight">
+          <h4>Fuzzy taxonomy matching</h4>
+          <p>Free-text industry and audience answers are normalised against a controlled taxonomy in three tiers — exact, punctuation-insensitive, then Levenshtein fuzzy match — with a safety kill-switch and alert when nothing fits.</p>
+        </div>
+        <div class="highlight">
+          <h4>CDC catch-up sweeper</h4>
+          <p>A scheduled change-data-capture sweeper finds recently modified contacts and replays them through the same processor path, so nothing is lost if a webhook is ever missed.</p>
+        </div>
+        <div class="highlight">
+          <h4>Point-in-time snapshots</h4>
+          <p>A weekly job captures registration and function snapshots into BigQuery, powering week-over-week trend reporting that the live tables alone can't give you.</p>
+        </div>
+        <div class="highlight">
+          <h4>Security &amp; trust boundaries</h4>
+          <p>Only the receiver is public, gated by EventsAir signature checks. Every internal call authenticates with Google-signed OIDC tokens, each service runs as its own identity, and secrets stay in Secret Manager.</p>
+        </div>
+        <div class="highlight">
+          <h4>Cost-aware &amp; observable</h4>
+          <p>Temporary staging tables auto-expire, DML retries back off under BigQuery concurrency limits, and structured logs with trace IDs plus a dead-letter queue make failures visible and replayable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- From v1 to v2 -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">The evolution</div>
+        <h2>From one big function to a resilient system</h2>
+      </div>
+      <div class="prose" style="max-width:820px">
+        <p>
+          The first version that proved the concept in production was a single Cloud Function
+          doing everything at once — receive, fetch, transform, write to BigQuery, sync HubSpot.
+          It worked, but one big function meant one shared timeout, no clean way to retry a
+          single step, and history rows that could duplicate on a retry.
+        </p>
+        <p>
+          I re-architected it into the decoupled, multi-service design above — splitting the
+          responsibilities, introducing queues and dead-letter handling, making writes
+          idempotent, and hardening the security boundaries. Same job, far more resilient, and
+          finally testable service by service.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Built with</div>
+        <h2>Technology</h2>
+      </div>
+      <div class="stack-groups">
+        <div class="stack-group">
+          <h4>Language &amp; APIs</h4>
+          <div class="stack"><span>Python</span><span>EventsAir GraphQL</span><span>HubSpot REST API</span><span>ClickUp API</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Google Cloud</h4>
+          <div class="stack"><span>Cloud Run</span><span>Cloud Tasks</span><span>Cloud Scheduler</span><span>BigQuery</span><span>Cloud Storage</span><span>Secret Manager</span><span>Cloud Logging</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Patterns &amp; practices</h4>
+          <div class="stack"><span>Event-driven</span><span>Idempotent MERGE</span><span>CDC</span><span>Dead-letter queue</span><span>OIDC / HMAC</span><span>Medallion architecture</span></div>
+        </div>
+      </div>
+      <a class="repo-link" href="https://github.com/Jason-Vuka/eventsair-gcp-hubspot-production-v2" target="_blank" rel="noopener">
+        &#128279; View the code on GitHub
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap inner">
+      <div class="foot-links">
+        <a href="index.html">Home</a>
+        <a href="work.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="mailto:Jason.Manganyi@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/jason-manganyi-ba0261104" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="copy">&copy; <span id="year">2026</span> Jason Manganyi. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top">&uarr;</button>
+
+  <script src="projects.data.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

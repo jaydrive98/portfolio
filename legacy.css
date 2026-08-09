@@ -1,0 +1,121 @@
+/* ===========================================================================
+   legacy.css — dark-theme facelift for the old 2022 project write-up pages.
+   Injected LAST in each page's <head> so it overrides the Google Sites export
+   styling + project.css. Keeps the on-brand black/red blocks; darkens the
+   white Google Sites content panels and flips body text to light.
+=========================================================================== */
+
+:root { --lg-bg:#0c0c0e; --lg-ink:#e4e4e7; --lg-muted:#a1a1aa; --lg-line:#2a2a30; --lg-red:#ff2b2b; }
+
+html, body {
+  background-color: var(--lg-bg) !important;
+  color: var(--lg-ink) !important;
+}
+
+/* Neutralise Google Sites' white section / panel backgrounds so the dark
+   page shows through. Branded blocks are re-asserted below. */
+body div, body section, body main, body article, body [role="main"],
+body [class] {
+  background-color: transparent !important;
+}
+
+/* Re-assert the blocks that are meant to be solid black */
+.flip-card-front, .flip-card-back, #Contents,
+#recommendationProject .middle, #databaseProject .middle {
+  background-color: #000 !important;
+}
+
+/* Keep the red action buttons on their gradient */
+button.showcode, button.viewcode, button#showcode, #showcode,
+#TopScroll, #MySQLTopScroll, #recommendationProject .top, #databaseProject .top {
+  background-image: linear-gradient(135deg, #bf0000 10%, #ff0000 100%) !important;
+  color: #fff !important;
+}
+
+/* Write-up text → light */
+#projectMain, #projectMain p, #projectMain li, #projectMain span,
+#projectMain h1, #projectMain h2, #projectMain h3, #projectMain h4, #projectMain h5,
+.analysis, .analysis p, .analysis li, .analysis span,
+.projectDescription, .projectContainerInner p, .foodInner p, figcaption, figcaption p {
+  color: var(--lg-ink) !important;
+}
+#myProjectOl li, .myProjectOl li { color: var(--lg-muted) !important; }
+
+/* Brighten Google Sites section titles (collapsible headers etc.) that sit
+   outside #projectMain and would otherwise render dim grey on dark. */
+body h1, body h2, body h3, body h4, body h5, body h6 { color: var(--lg-ink) !important; }
+
+/* Links */
+#projectMain a, .analysis a { color: #ff6a6a !important; }
+#projectMain a:hover, .analysis a:hover { color: #fff !important; }
+
+/* Code blocks → dark surface */
+pre, pre[class*="language-"], code[class*="language-"], pre.showCode, .wp-block-code {
+  background: #141418 !important;
+  border: 1px solid var(--lg-line) !important;
+  color: #e4e4e7 !important;
+  text-shadow: none !important;
+}
+:not(pre) > code { background: #1d1d22 !important; color: #ff8a8a !important; }
+
+/* Tables → dark, readable */
+#projectMain table, .analysis table, #descriptiveStats, #resultTable,
+#projectMain td, #projectMain th, .analysis td, .analysis th,
+#descriptiveStats td, #descriptiveStats th, #resultTable td, #resultTable th {
+  color: var(--lg-ink) !important;
+  border-color: var(--lg-line) !important;
+}
+#descriptiveStats tr:nth-child(even) { background-color: #1a1a1f !important; }
+#descriptiveStats td:hover, #descriptiveStats th:hover, #resultTable tr:hover {
+  background-color: #2a2a30 !important; color: #fff !important;
+}
+#descriptiveStats caption, #resultTable caption { color: var(--lg-ink) !important; }
+
+/* Section dividers / rules that were dark-on-white */
+#projectMain hr, .analysis hr { border-color: var(--lg-line) !important; }
+
+/* ===========================================================================
+   Harmonised top nav (replaces the old Google Sites header bar)
+=========================================================================== */
+/* Hide the old Google Sites header / nav */
+#atIdViewHeader, nav#yuynLe { display: none !important; }
+
+.lg-site-header {
+  position: sticky; top: 0; z-index: 9999;
+  background: rgba(12,12,14,.92) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--lg-line);
+  font-family: 'Oswald', sans-serif;
+}
+.lg-nav {
+  width: 90%; max-width: 1120px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; height: 62px;
+}
+.lg-brand {
+  font-weight: 700; letter-spacing: .5px; font-size: 1.12rem;
+  text-transform: uppercase; color: var(--lg-ink) !important; text-decoration: none !important;
+}
+.lg-brand span { color: var(--lg-red) !important; }
+.lg-nav-links { display: flex; gap: 28px; align-items: center; }
+.lg-nav-links a {
+  font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: .6px;
+  font-size: .9rem; color: var(--lg-muted) !important; text-decoration: none !important;
+  padding: 6px 0; position: relative;
+}
+.lg-nav-links a:hover, .lg-nav-links a.active { color: var(--lg-ink) !important; }
+.lg-nav-links a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 3px; background: linear-gradient(135deg, #bf0000, #ff0000); border-radius: 3px;
+}
+.lg-nav-toggle { display: none; background: none; border: 0; color: var(--lg-ink); font-size: 1.5rem; cursor: pointer; }
+@media (max-width: 780px) {
+  .lg-nav-toggle { display: block; }
+  .lg-nav-links {
+    position: absolute; top: 62px; left: 0; right: 0; flex-direction: column; gap: 0;
+    background: #141418 !important; border-bottom: 1px solid var(--lg-line);
+    max-height: 0; overflow: hidden; transition: max-height .25s ease;
+  }
+  .lg-nav-links.open { max-height: 340px; }
+  .lg-nav-links a { width: 100%; padding: 14px 5%; border-top: 1px solid var(--lg-line); }
+  .lg-nav-links a.active::after { display: none; }
+}

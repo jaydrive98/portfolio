@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FN0PNQSCTB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FN0PNQSCTB');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HubSpot → BigQuery Data Pipeline | Jason Manganyi</title>
+  <meta name="description" content="A Cloud Composer / Airflow pipeline that mirrors the entire HubSpot CRM into a BigQuery warehouse each run — on ephemeral infrastructure that only exists while it's working.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">JASON <span>MANGANYI</span></a>
+      <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Projects</a>
+        <a href="about.html">About</a>
+        <a href="about.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom:34px">
+    <div class="wrap">
+      <a class="back-link" href="work.html">&#8592; All projects</a>
+      <div class="eyebrow">Data Engineering &middot; Google Cloud &middot; Airflow</div>
+      <h1 style="font-size:clamp(2rem,5vw,3.4rem)">HubSpot&nbsp;&rarr; BigQuery<br>Data Pipeline</h1>
+      <div class="rule"></div>
+      <p class="lede">
+        A pipeline that copies the <em>entire</em> HubSpot CRM — every contact, deal, company,
+        campaign and email event — into a BigQuery warehouse on a schedule, so the whole business
+        can analyse its CRM data properly. The clever part: it runs on infrastructure that only
+        exists while the job is running.
+      </p>
+      <div class="tag-row">
+        <span>Python</span><span>Apache Airflow</span><span>Cloud Composer</span><span>Cloud Workflows</span>
+        <span>Cloud Scheduler</span><span>Cloud Storage</span><span>BigQuery</span><span>HubSpot API</span>
+      </div>
+      <p style="color:var(--faint); font-size:.85rem; margin-top:20px">
+        &#128274; Private repository &mdash; built for VUKA Group, code not publicly shared.
+      </p>
+    </div>
+  </section>
+
+  <!-- The problem -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">The problem</div>
+        <h2>A CRM full of data you can't really analyse</h2>
+      </div>
+      <div class="prose" style="max-width:820px">
+        <p>
+          HubSpot is where the business lives — 320k+ contacts (each with over a thousand
+          fields), deals, companies, marketing campaigns and a firehose of email events. It's a
+          brilliant CRM, but it's a poor place to do serious analysis. You can't easily join it to
+          event or finance data, run heavy queries, or build the kind of historical, cross-team
+          reporting leadership wanted.
+        </p>
+        <p>
+          The answer is a proper data warehouse. This pipeline mirrors HubSpot's whole data model
+          into <strong>BigQuery</strong> on a schedule — turning a locked-in CRM into an open,
+          queryable dataset that powers dashboards, machine learning, and joins with every other
+          system. The design goal on top of that: do it <strong>without paying for a data
+          platform that sits idle</strong> 23 hours a day.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The ephemeral idea -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">The core idea</div>
+        <h2>Infrastructure that builds and destroys itself</h2>
+      </div>
+      <div class="flow">
+        <div class="flow-stage">
+          <div class="flow-node"><span class="t">Scheduler</span><span class="s">Cron kicks off the run</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node accent"><span class="t">Workflow</span><span class="s">Spins up Airflow environment</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node accent"><span class="t">Overlord DAG</span><span class="s">Runs all the extract jobs</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node"><span class="t">GCS &rarr; BigQuery</span><span class="s">Land &amp; load the data</span></div>
+          <div class="flow-arrow">&rarr;</div>
+        </div>
+        <div class="flow-stage">
+          <div class="flow-node accent"><span class="t">Teardown</span><span class="s">Snapshot &amp; delete everything</span></div>
+        </div>
+      </div>
+      <div class="prose" style="max-width:820px; margin-top:26px">
+        <p>
+          A managed Airflow environment (Cloud Composer) is powerful but expensive to leave
+          running around the clock. So instead of keeping one alive, a <strong>Cloud Workflow</strong>
+          creates a fresh environment at the start of each run, lets it do its work, and then
+          <strong>snapshots and deletes it</strong> at the end.
+        </p>
+        <p>
+          The handshake is the neat bit: the Workflow writes a private "call me when you're done"
+          URL into Cloud Storage and waits. Inside the freshly-built environment, a master DAG I
+          call the <strong>Overlord</strong> starts automatically, runs every extraction job, waits
+          for them all to finish — then reads that URL and posts back to tell the Workflow it's safe
+          to tear everything down. Crucially, that teardown signal fires <em>even if some jobs
+          failed</em>, so a bad run can never leave expensive infrastructure running.
+        </p>
+      </div>
+
+      <div class="metrics" style="margin-top:32px">
+        <div class="metric"><div class="big" style="color:var(--muted)">~$600<span style="font-size:1rem">/mo</span></div><div class="lbl">Google's estimate for the same environment left running full-time</div></div>
+        <div class="metric"><div class="big" style="color:var(--muted)">More still</div><div class="lbl">What a managed ETL tool like Fivetran was estimated to cost at this data volume</div></div>
+        <div class="metric"><div class="big">&lt;$50<span style="font-size:1rem">/mo</span></div><div class="lbl">What this pipeline actually costs to run — roughly a 90% saving</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What it moves -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">What it moves</div>
+        <h2>The whole HubSpot data model</h2>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="big">100M+</div><div class="lbl">Rows across the warehouse — the email-send events table alone holds 59.6M (16.5&nbsp;GB)</div></div>
+        <div class="metric"><div class="big">70+</div><div class="lbl">BigQuery tables — 30+ core objects, plus email-event, activity and junction tables that each split 10+ ways</div></div>
+        <div class="metric"><div class="big">~2 hrs</div><div class="lbl">A full daily run, end to end, before the environment tears itself down (up to ~4 hrs on the heavy bi-monthly cycle)</div></div>
+        <div class="metric"><div class="big">Apr 2025</div><div class="lbl">Running in production ever since, with near-perfect reliability</div></div>
+      </div>
+      <div class="prose" style="max-width:820px; margin-top:26px">
+        <p>
+          Each HubSpot object has its own extraction job: contacts (320k+ rows, 1,000+ fields each),
+          companies, deals, leads, campaigns, products, line items, forms and lists. On top of that
+          sit eleven dedicated email-event streams, five activity types (emails, calls, meetings,
+          tasks and notes), and four master association "junction" tables — for deals, contacts,
+          companies and leads — that each fan out into ten or more tables of their own.
+        </p>
+        <p>
+          The master DAG adjusts what runs based on the calendar: the lighter objects refresh every
+          run, while the heaviest one — a full contacts sync — only runs on a longer cycle to keep
+          each run fast and cheap.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering highlights -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Engineering highlights</div>
+        <h2>The interesting bits</h2>
+      </div>
+      <div class="highlight-grid">
+        <div class="highlight">
+          <h4>Ephemeral, cost-optimised infra</h4>
+          <p>A Cloud Workflow creates → runs → snapshots → destroys the Airflow environment every cycle. You get all of managed Airflow's power without paying for it to sit idle between runs.</p>
+        </div>
+        <div class="highlight">
+          <h4>Self-orchestrating master DAG</h4>
+          <p>The "Overlord" auto-starts on a fresh environment, cleans up any stale runs, triggers every child job, waits for completion, and signals teardown — reliably, even when individual jobs fail.</p>
+        </div>
+        <div class="highlight">
+          <h4>Two clean ETL patterns</h4>
+          <p>Simple objects use extract → NDJSON in Cloud Storage → load to BigQuery. Append-only streams (email events, associations) add a staging table and an idempotent <code>MERGE</code> into the main table.</p>
+        </div>
+        <div class="highlight">
+          <h4>Incremental watermarking</h4>
+          <p>The forms pipeline tracks the last submission time per form in a BigQuery watermark table, so each run pulls only what's new instead of re-fetching everything.</p>
+        </div>
+        <div class="highlight">
+          <h4>API-friendly extraction</h4>
+          <p>Every HubSpot call uses exponential backoff and retries to respect rate limits, so a busy API or a transient error slows a job down rather than breaking the run.</p>
+        </div>
+        <div class="highlight">
+          <h4>Dynamic, calendar-aware scheduling</h4>
+          <p>The job list changes with the date — heavy full-syncs run on a bi-weekly / bi-monthly cadence while everything else runs every cycle, balancing freshness against cost and runtime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">The result</div>
+        <h2>From an 8-hour Friday to a self-running warehouse</h2>
+      </div>
+      <div class="prose" style="max-width:820px">
+        <p>
+          This one grew out of necessity. Teams started with <strong>zero visibility</strong> into
+          this data. My first fix was a manual export of just contacts and lists — which quickly
+          swallowed <strong>my entire Friday, eight hours</strong> of pulling, cleaning and
+          visualising by hand every week. As the exports outgrew a spreadsheet, they needed a
+          database; and once there was a database, the whole thing begged to be automated.
+        </p>
+        <p>
+          The business now has its complete HubSpot history sitting in BigQuery — refreshed
+          automatically, ready to join with event, finance and marketing data, and running for a
+          fraction of the cost of an always-on data platform. It's the foundation the executive
+          Looker Studio dashboards and the revenue-forecasting models are built on. And I got my
+          Fridays back.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Built with</div>
+        <h2>Technology</h2>
+      </div>
+      <div class="stack-groups">
+        <div class="stack-group">
+          <h4>Orchestration</h4>
+          <div class="stack"><span>Apache Airflow</span><span>Cloud Composer</span><span>Cloud Workflows</span><span>Cloud Scheduler</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Data &amp; storage</h4>
+          <div class="stack"><span>BigQuery</span><span>Cloud Storage</span><span>NDJSON</span><span>Secret Manager</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Language &amp; patterns</h4>
+          <div class="stack"><span>Python</span><span>HubSpot REST API</span><span>Idempotent MERGE</span><span>Incremental watermarks</span><span>Medallion staging</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap inner">
+      <div class="foot-links">
+        <a href="index.html">Home</a>
+        <a href="work.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="mailto:Jason.Manganyi@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/jason-manganyi-ba0261104" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="copy">&copy; <span id="year">2026</span> Jason Manganyi. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top">&uarr;</button>
+
+  <script src="projects.data.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

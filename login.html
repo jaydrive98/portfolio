@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex, nofollow, noarchive">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="./style.css">
     <script src="js/login.js"></script>
     <script src= "https://smtpjs.com/v3/smtp.js"></script>
@@ -42,7 +44,7 @@
 
                 <span>
                     <p class="pain"> </p>
-                    <a class="fb"><i class="fa fa-facebook facebookThing" aria-hidden="true"></i> Login with facebook</a>
+                    <a class="fb" href="index.html"><i class="fa fa-facebook facebookThing" aria-hidden="true"></i> Login with facebook</a>
                     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
                 </span>
             </article>
@@ -81,7 +83,7 @@
            
                 <input type="password" name="password" id="password" placeholder="password" required/>
                 <br><br><br> <br>
-                <input type="button" value="Login" id="submit" onclick="validate()"/>
+                <input type="button" value="Login" id="submit" onclick="window.location.href='index.html'"/>
                 </form>
             </div>    
             
