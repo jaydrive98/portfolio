@@ -1,0 +1,6 @@
+# Never publish personal documents / raw datasets
+*.docx
+*.dotx
+*.xlsx
+*.xlsm
+*.csv
