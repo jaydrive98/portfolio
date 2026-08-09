@@ -59,9 +59,10 @@ const PROJECTS = [
   {
     title: "Digital Dialogues — Curated Webinar Registration",
     category: "data-engineering",
-    stack: ["Python", "Cloud Run", "CognitoForms", "HubSpot API", "Microsoft Teams"],
-    blurb: "A registration flow for invite-only webinars. Attendees apply through a CognitoForms form — their details, interests and marketing consent — which fires a webhook to a Python Cloud Run function that adds them to HubSpot and subscribes them to the right mailing lists. The team then hand-picks who's in: approving an applicant triggers a second webhook that automatically registers them into the Microsoft Teams webinar.",
-    link: "",
+    stack: ["Python", "Cloud Run", "CognitoForms", "HubSpot API", "Microsoft Graph"],
+    blurb: "An event-driven flow for invite-only webinars. Applicants sign up on a CognitoForms form — details, interests and marketing consent — firing a webhook to a Python Cloud Run function that upserts them into HubSpot and sets their email subscriptions. The team then hand-picks who's in: an approval fires a second webhook that registers accepted guests into the Microsoft Teams webinar via Microsoft Graph.",
+    link: "project-digital-dialogues.html",
+    featured: true,
   },
 
   {
