@@ -56,6 +56,13 @@ const PROJECTS = [
     blurb: "Centralises the company's meeting transcripts and recordings. Each user gets their own custom webhook URL; incoming Krisp meetings are processed into clean Markdown notes alongside the raw JSON, and recordings are stored in both Azure Blob Storage and Google Cloud Storage. A queue-backed, medallion-pattern integration.",
     link: "",
   },
+  {
+    title: "Digital Dialogues — Curated Webinar Registration",
+    category: "data-engineering",
+    stack: ["Python", "Cloud Run", "CognitoForms", "HubSpot API", "Microsoft Teams"],
+    blurb: "A registration flow for invite-only webinars. Attendees apply through a CognitoForms form — their details, interests and marketing consent — which fires a webhook to a Python Cloud Run function that adds them to HubSpot and subscribes them to the right mailing lists. The team then hand-picks who's in: approving an applicant triggers a second webhook that automatically registers them into the Microsoft Teams webinar.",
+    link: "",
+  },
 
   {
     title: "Deal Revenue Forecasting Pipeline",
