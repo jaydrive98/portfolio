@@ -68,6 +68,14 @@ const PROJECTS = [
 
   /* ---- Machine Learning ------------------------------------------------ */
   {
+    title: "NYC Taxi Trip-Duration Prediction",
+    category: "ml",
+    stack: ["Python", "Scikit-learn", "XGBoost", "Random Forest"],
+    blurb: "Predicts how long a New York City taxi trip will take. A deep exploratory analysis — hypothesis testing, correlation and outlier handling — feeding regression models (Linear, Ridge, Random Forest, XGBoost), with an interactive estimator dashboard you can try yourself.",
+    link: "Taxi Duration.html",
+    featured: true,
+  },
+  {
     title: "Fake News Classifier",
     category: "ml",
     stack: ["Python", "Scikit-learn", "Pandas"],
